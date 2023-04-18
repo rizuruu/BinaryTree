@@ -1,20 +1,34 @@
-// BinaryTree.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+#include "BinaryTree.h"
 #include <iostream>
 
-int main()
+TreeNode* BinaryTree::makeNode(char data)
 {
-    std::cout << "Hello World!\n";
+    TreeNode* newNode;
+    newNode = new TreeNode();
+    newNode->data = data;
+    newNode->left = nullptr;
+    newNode->right = nullptr;
+    return newNode;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+TreeNode* BinaryTree::makeTree()
+{
+    TreeNode* head = makeNode('a');
+    head->left = makeNode('m');
+    head->right = makeNode('j');
+    head->right->right = makeNode('c');
+    head->right->left = makeNode('k');
+    head->right->left->left = makeNode('b');
+    head->right->left->right = makeNode('r');
+    printf(" %c", head->data);
+    return head;
+}
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+void BinaryTree::preOrderTraverse(TreeNode* t) 
+{
+    printf(" %c", t->data);
+    if (t->left != nullptr)
+        preOrderTraverse(t->left);
+    if (t->right != nullptr)
+        preOrderTraverse(t->right);
+}
